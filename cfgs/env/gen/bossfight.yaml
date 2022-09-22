@@ -1,0 +1,8 @@
+defaults:
+  - gen
+  - _self_
+
+env_name: 'bossfight'
+
+ret_min: 0.5
+ret_max: 13

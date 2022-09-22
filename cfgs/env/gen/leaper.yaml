@@ -1,0 +1,8 @@
+defaults:
+  - gen
+  - _self_
+
+env_name: 'leaper'
+
+ret_min: 3
+ret_max: 10

@@ -1,0 +1,42 @@
+defaults:
+  - base_onpolicy
+  - _self_
+
+agent_name: /hyperbolic/ppo_sn
+
+# PPO params
+agent:
+  _target_: ppo.ModularPPO
+  device: ${device}
+  actor_critic_model:
+    _target_: online_actor_critics.DiscreteActorCritic
+    modules:
+      _target_: custom_networks_hyp.make_impala_modules_hyp
+      obs_dims: ${obs_dims}
+      n_actions: ${n_actions}
+      max_euclidean_norm: 60 # before rescaline
+      channels: [16, 32, 32]
+      hidden_units: 32
+      shared_conv_trunk: true
+      shared_fc_head: true
+      hyperbolic_layer_index: -1 # by default last layer
+      pre_hyperbolic_relu: false
+      temperature_scaling: false
+      pre_hyperbolic_sn: true
+      dimensions_per_space: 32
+      final_init: 'small'
+      pre_hyp_final_init: false
+      rescale_euclidean_norms_gain: 1.0
+      rescale_normal_params: true
+      effective_softmax_rescale: 0.5
+  optimizer:
+    _target_: utils_hyp.geoopt.optim.RiemannianAdam
+    lr: 5e-4
+    eps: 1e-5
+  clipping: 0.2
+  value_clipping: 0.2
+  ent_coeff: 0.01
+  val_coeff: 0.5
+  max_gradient_norm: 0.5
+
+gamma: 0.999

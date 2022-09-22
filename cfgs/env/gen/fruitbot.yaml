@@ -1,0 +1,8 @@
+defaults:
+  - gen
+  - _self_
+
+env_name: 'fruitbot'
+
+ret_min: -1.5
+ret_max: 32.4

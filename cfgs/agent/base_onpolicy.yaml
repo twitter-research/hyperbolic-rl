@@ -1,0 +1,22 @@
+defaults:
+  - _self_
+  - preprocessor@_global_: running_rw
+  - buffer@_global_: gae_rollout_buffer
+
+batch_size: 2048 #steps_per_rollout * n_envs // 8
+steps_per_rollout: 256
+
+training_fn:
+  _target_: onpolicy_training.run_training
+  agent:
+  buffer:
+  env:
+  tester:
+  preprocessor:
+  total_steps: 25_000_000
+  steps_per_rollout: ${steps_per_rollout}
+  n_envs: ${n_envs}
+  train_epochs_per_iteration: 3
+  log_frequency: 4
+  batch_size: ${batch_size}
+  save_weights_every: ${save_weights_every}

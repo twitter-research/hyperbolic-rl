@@ -1,0 +1,29 @@
+defaults:
+  - _self_
+  - env@_global_: gen/starpilot
+  - agent@_global_: onpolicy/ppo
+
+tester:
+  _target_: testers.ModularTester
+  eval_env_cfg: ${eval_env}
+  preprocessor:
+  max_eval_timesteps: 1e6
+  min_eval_episodes: ${n_eval_envs}
+
+device: ???
+obs_dims: ???
+act_dims: ???
+n_actions: ???
+action_size: ???
+action_scale: ???
+logging_folder: exp_local
+
+save_weights_every: 200
+disable_cuda: false
+
+hydra:
+  run:
+    dir: ./${logging_folder}/${agent_name}/${env_log_name}/${now:%Y.%m.%d}_${now:%H%M%S}
+  sweep:
+    dir: ./${logging_folder}/ #SWEEP_${now:%Y.%m.%d}_${now:%H%M%S}
+    subdir: ${agent_name}/${env_log_name}/${now:%Y.%m.%d}_${now:%H%M%S}

@@ -1,0 +1,8 @@
+defaults:
+  - gen
+  - _self_
+
+env_name: 'plunder'
+
+ret_min: 2
+ret_max: 12.6

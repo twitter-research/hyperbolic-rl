@@ -1,0 +1,13 @@
+# Buffer params
+
+buffer:
+  _target_: buffers.RolloutBuffer
+  device: ${device}
+  buffer_size: ${steps_per_rollout}
+  obs_dims: ${obs_dims}
+  act_dims: ${act_dims}
+  use_gae: true
+  preprocessor:
+  n_envs: ${n_envs}
+  gamma: ${gamma}
+  lambd: 0.95

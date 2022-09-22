@@ -1,0 +1,8 @@
+defaults:
+  - gen
+  - _self_
+
+env_name: 'heist'
+
+ret_min: 3.5
+ret_max: 10

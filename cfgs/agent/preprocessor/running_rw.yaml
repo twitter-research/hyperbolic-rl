@@ -1,0 +1,11 @@
+# Preprocessor params
+
+preprocessor:
+  _target_: utils.Preprocessor
+  device: ${device}
+  reward_pre: 'normalization_backwards'
+  observation_pre: 'dequantization'
+  obs_dims: ${obs_dims}
+  observation_clip: 10
+  reward_clip: 10
+  gamma: ${gamma}

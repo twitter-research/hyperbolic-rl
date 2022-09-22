@@ -1,0 +1,26 @@
+n_envs: 64
+n_eval_envs: 10
+distribution_mode: easy
+
+env_log_name: ${env_name}_gen
+
+env:
+  _target_: env.procgen.ProcgenGym3Env
+  num: ${n_envs}
+  env_name: ${env_name}
+  distribution_mode: ${distribution_mode}
+  num_levels: 200
+
+eval_env:
+  _target_: env.procgen.ProcgenGym3Env
+  num: ${n_eval_envs}
+  env_name: ${env_name}
+  distribution_mode: ${distribution_mode}
+
+tester:
+  _target_: testers.ModularTester
+  eval_env_cfg: ${eval_env}
+  preprocessor:
+  max_eval_timesteps: 1e6
+  min_eval_episodes: ${n_eval_envs}
+  train_env_cfg: ${env}

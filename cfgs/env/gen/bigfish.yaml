@@ -1,0 +1,8 @@
+defaults:
+  - gen
+  - _self_
+
+env_name: 'bigfish'
+
+ret_min: 1
+ret_max: 40
